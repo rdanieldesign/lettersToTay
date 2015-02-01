@@ -1,20 +1,19 @@
+Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhTxWVr26Nne6n8KMA6WLsUeu");
+
 (function(){
 
 	// Initialize Collections
-	App.posts = new App.Collections.Posts([
-		{
-			title: 'First Post',
-			author: 'Richard',
-			description: 'This is my first post. It is a test post.',
-		},
-		{
-			title: 'Second Post',
-			author: 'Taylor',
-			description: 'This is Taylor\'s first post. It is written by Richard.',
-		}
-	]);
+	App.posts = new App.Collections.Posts();
 
-	// Initialize Router
-	new App.Router.AppRouter();
+	// Fetch Posts and Start App
+	App.posts.fetch({
+		success: function(){
+			// Initialize Router
+			App.router = new App.Router.AppRouter();
+		},
+		error: function(){
+			console.log('Posts could not be fetched');
+		}
+	});
 
 }());

@@ -1,18 +1,28 @@
 (function(){
 
-	App.Router.AppRouter = Backbone.Router.extend({
+	App.Router.AppRouter = Parse.Router.extend({
 
 		initialize: function(){
-			Backbone.history.start();
-			console.log('Router Initialized');
+			Parse.history.start();
 		},
 
 		routes: {
-			'': 'showHome'
+			'': 'showHome',
+			'addPost': 'addPost',
+			'single/:id': 'singlePost'
 		},
 
 		showHome: function(){
 			new App.Views.Home();
+		},
+
+		addPost: function(){
+			new App.Views.AddPost();
+		},
+
+		singlePost: function(id){
+			var post = App.posts.get(id);
+			new App.Views.SingleView(post.toJSON());
 		}
 
 	});

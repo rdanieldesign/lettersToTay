@@ -1,6 +1,6 @@
 (function(){
 
-	App.Collections.Posts = Backbone.Collection.extend({
+	App.Collections.Posts = Parse.Collection.extend({
 
 		model: App.Models.Post
 

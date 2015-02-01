@@ -1,17 +1,18 @@
 (function(){
 
-	App.Models.Post = Backbone.Model.extend({
+	App.Models.Post = Parse.Object.extend({
+
+		className: 'Post',
+
+		idAttribute: 'objectId',
 
 		defaults: {
 			title: '',
 			author: '',
 			description: '',
-			date_added: new Date()
 		},
 
-		initialize: function(){
-			console.log('Model Initialized');
-		}
+		initialize: function(){}
 
 	});
 

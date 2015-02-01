@@ -24,19 +24,48 @@
   <body>
 
     <div class="hero-unit">
-      <h1>Blog for Tay</h1>
+      <nav>
+        <a href="#/">Home</a>
+        <a href="#/addPost">Add</a>
+      </nav>
+      <h1>Letters to Tay</h1>
+
+      <!-- Dynamic Content Area -->
       <div id="content"></div>
+      <!-- End Dynamic Content Area -->
+
     </div>
 
+    <!-- Home Template -->
     <script type="text/template" id="homePosts">
       <li>
         <h3><%= title %></h3>
         <p>by <%= author %></p>
         <p><%= description %></p>
-        <p><%= date_added %></p>
+        <p><%= updatedAt %></p>
+        <a href="#/single/<%= objectId %>">View Post</a>
       </li>
     </script>
+    <!-- End Home Template -->
 
+    <!-- Single Template -->
+    <script type="text/template" id="singlePost">
+      <h3><%= title %></h3>
+      <p>by <%= author %></p>
+      <p><%= description %></p>
+      <p><%= updatedAt %></p>
+    </script>
+    <!-- End Single Template -->
+
+    <!-- Add Template -->
+    <script type="text/template" id="addPost">
+      <input id="newTitle" placeholder="Add a Title"></input>
+      <textarea name="" id="newTextContent" placeholder="Add Text Content"></textarea>
+      <button id="createPost">Add Post</button>
+    </script>
+    <!-- End Add Template -->
+
+    <!-- Bind App object to Window -->
     <script type="text/javascript">
       window.App = {};
       App.Models = {};
@@ -53,12 +82,17 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/models/post_model.js"></script>
-        <script src="scripts/collections/posts.js"></script>
-        <script src="scripts/views/home_view.js"></script>
-        <script src="scripts/routes/router.js"></script>
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
-</body>
+    <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/models/post_model.js"></script>
+    <script src="scripts/collections/posts.js"></script>
+    <script src="scripts/views/home_view.js"></script>
+    <script src="scripts/views/single_view.js"></script>
+    <script src="scripts/views/add_view.js"></script>
+    <script src="scripts/routes/router.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+  </body>
 </html>
