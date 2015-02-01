@@ -13,7 +13,7 @@
 
 			$('#content').empty();
 
-			var single = this.template(this.options);
+			var single = this.template(this.options.toJSON());
 
 			$('#content').html(single);
 

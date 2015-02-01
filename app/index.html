@@ -44,6 +44,7 @@
         <p><%= description %></p>
         <p><%= updatedAt %></p>
         <a href="#/single/<%= objectId %>">View Post</a>
+        <a href="#/editPost/<%= objectId %>">Edit Post</a>
       </li>
     </script>
     <!-- End Home Template -->
@@ -64,6 +65,14 @@
       <button id="createPost">Add Post</button>
     </script>
     <!-- End Add Template -->
+
+    <!-- Edit Template -->
+    <script type="text/template" id="editPost">
+      <input id="newTitle" value="<%= title %>"></input>
+      <textarea id="newTextContent"><%= description %></textarea>
+      <button id="submitEdit">Edit Post</button>
+    </script>
+    <!-- End Edit Template -->
 
     <!-- Bind App object to Window -->
     <script type="text/javascript">
@@ -90,6 +99,7 @@
     <script src="scripts/views/home_view.js"></script>
     <script src="scripts/views/single_view.js"></script>
     <script src="scripts/views/add_view.js"></script>
+    <script src="scripts/views/edit_view.js"></script>
     <script src="scripts/routes/router.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->

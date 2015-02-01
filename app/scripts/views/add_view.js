@@ -30,7 +30,6 @@
 				title: $('#newTitle').val(),
 				author: 'Richard Daniel',
 				description: $('#newTextContent').val(),
-				date_added: new Date(),
 			});
 
 			newPost.save(null, {

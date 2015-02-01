@@ -9,6 +9,7 @@
 		routes: {
 			'': 'showHome',
 			'addPost': 'addPost',
+			'editPost/:id': 'editPost',
 			'single/:id': 'singlePost'
 		},
 
@@ -20,9 +21,14 @@
 			new App.Views.AddPost();
 		},
 
+		editPost: function(id){
+			var post = App.posts.get(id);
+			new App.Views.EditPost(post);
+		},
+
 		singlePost: function(id){
 			var post = App.posts.get(id);
-			new App.Views.SingleView(post.toJSON());
+			new App.Views.SingleView(post);
 		}
 
 	});
