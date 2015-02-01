@@ -5,11 +5,17 @@
 		tagName: 'ul',
 		className: 'postList',
 
+		events: {
+			'click #delete': 'delete'
+		},
+
 		template: _.template($('#homePosts').html()),
 
 		initialize: function(){
 			this.render();
 			$('#content').html(this.$el);
+
+			App.posts.on('destroy', this.render, this);
 		},
 
 		render: function(){
@@ -23,6 +29,12 @@
 				var post = self.template(x);
 				self.$el.append(post);
 			});
+		},
+
+		delete: function(e){
+			e.preventDefault();
+			var postId = $(e.target.parentElement).attr('id');
+			App.posts.get(postId).destroy();
 		}
 
 	});

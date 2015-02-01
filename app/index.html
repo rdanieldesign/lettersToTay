@@ -38,8 +38,9 @@
 
     <!-- Home Template -->
     <script type="text/template" id="homePosts">
-      <li>
+      <li id="<%= objectId %>">
         <h3><%= title %></h3>
+        <button id="delete">X</button>
         <p>by <%= author %></p>
         <p><%= description %></p>
         <p><%= updatedAt %></p>
