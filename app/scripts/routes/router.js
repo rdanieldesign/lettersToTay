@@ -15,7 +15,13 @@
 		},
 
 		showHome: function(){
-			new App.Views.Home();
+			if(App.user){
+				new App.Views.Home();
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		login: function(){
