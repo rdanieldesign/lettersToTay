@@ -27,6 +27,7 @@
       <nav>
         <a href="#/">Home</a>
         <a href="#/addPost">Add</a>
+        <a href="#/login">Login</a>
       </nav>
       <h1>Letters to Tay</h1>
 
@@ -49,6 +50,14 @@
       </li>
     </script>
     <!-- End Home Template -->
+
+    <!-- Login Template -->
+    <script type="text/template" id="login">
+      <input id="username" placeholder="Username"></input>
+      <input id="password" type="password" placeholder="Password"></input>
+      <button id="submitLogin">Log In</button>
+    </script>
+    <!-- End Login Template -->
 
     <!-- Single Template -->
     <script type="text/template" id="singlePost">
@@ -98,6 +107,7 @@
     <script src="scripts/models/post_model.js"></script>
     <script src="scripts/collections/posts.js"></script>
     <script src="scripts/views/home_view.js"></script>
+    <script src="scripts/views/login_view.js"></script>
     <script src="scripts/views/single_view.js"></script>
     <script src="scripts/views/add_view.js"></script>
     <script src="scripts/views/edit_view.js"></script>

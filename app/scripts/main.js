@@ -2,6 +2,9 @@ Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhT
 
 (function(){
 
+	// Initialize User
+	App.user = Parse.User.current();
+
 	// Initialize Collections
 	App.posts = new App.Collections.Posts();
 

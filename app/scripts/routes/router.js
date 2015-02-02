@@ -8,6 +8,7 @@
 
 		routes: {
 			'': 'showHome',
+			'login': 'login',
 			'addPost': 'addPost',
 			'editPost/:id': 'editPost',
 			'single/:id': 'singlePost'
@@ -15,6 +16,10 @@
 
 		showHome: function(){
 			new App.Views.Home();
+		},
+
+		login: function(){
+			new App.Views.Login();
 		},
 
 		addPost: function(){
