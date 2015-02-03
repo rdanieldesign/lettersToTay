@@ -30,6 +30,7 @@
 				title: $('#newTitle').val(),
 				author: 'Richard Daniel',
 				description: $('#newTextContent').val(),
+				status: 'incomplete'
 			});
 
 			newPost.save(null, {

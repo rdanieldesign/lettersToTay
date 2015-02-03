@@ -7,14 +7,15 @@
 		},
 
 		routes: {
-			'': 'showHome',
+			'': 'home',
 			'login': 'login',
 			'addPost': 'addPost',
 			'editPost/:id': 'editPost',
-			'single/:id': 'singlePost'
+			'single/:id': 'singlePost',
+			'done': 'done'
 		},
 
-		showHome: function(){
+		home: function(){
 			if(App.user){
 				new App.Views.Home();
 			} else {
@@ -40,6 +41,10 @@
 		singlePost: function(id){
 			var post = App.posts.get(id);
 			new App.Views.SingleView(post);
+		},
+
+		done: function(){
+			new App.Views.Done();
 		}
 
 	});

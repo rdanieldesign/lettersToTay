@@ -10,6 +10,7 @@
 			title: '',
 			author: '',
 			description: '',
+			status: ''
 		},
 
 		initialize: function(){}
