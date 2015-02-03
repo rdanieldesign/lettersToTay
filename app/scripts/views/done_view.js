@@ -43,8 +43,10 @@
 		delete: function(e){
 			e.preventDefault();
 			var postId = $(e.target.parentElement).attr('id');
-			console.log(postId);
-			App.posts.get(postId).destroy();
+			var sure = confirm('Are you sure you want to delete this entry?');
+			if(sure){
+				App.posts.get(postId).destroy();
+			};
 		},
 
 		incomplete: function(e){

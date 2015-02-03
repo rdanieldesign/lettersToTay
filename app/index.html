@@ -30,7 +30,6 @@
         <a href="#/done">Done</a>
         <a href="#/login">Login</a>
       </nav>
-      <h1>Letters to Tay</h1>
 
       <!-- Dynamic Content Area -->
       <div id="content"></div>
@@ -61,12 +60,24 @@
         <p>by <%= author %></p>
         <p><%= description %></p>
         <p><%= updatedAt %></p>
+        <img src="<%= image.url %>" alt="">
         <a href="#/single/<%= objectId %>">View Post</a>
         <a href="#/editPost/<%= objectId %>">Edit Post</a>
         <button id="incomplete">Mark as Incomplete</button>
       </li>
     </script>
     <!-- End Done Template -->
+
+    <!-- Complete Template -->
+    <script type="text/template" id="complete">
+      <h3><%= title %></h3>
+      <p>by <%= author %></p>
+      <p><%= description %></p>
+      <p><%= updatedAt %></p>
+      <input id="cameraUpload" type="file" capture="camera" placeholder="Upload an Image">
+      <button id="markComplete">Mark as Completed</button>
+    </script>
+    <!-- End Complete Template -->
 
     <!-- Login Template -->
     <script type="text/template" id="login">
@@ -130,6 +141,7 @@
     <script src="scripts/views/add_view.js"></script>
     <script src="scripts/views/edit_view.js"></script>
     <script src="scripts/views/done_view.js"></script>
+    <script src="scripts/views/complete_view.js"></script>
     <script src="scripts/routes/router.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->

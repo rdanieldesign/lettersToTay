@@ -37,12 +37,15 @@
 		delete: function(e){
 			e.preventDefault();
 			var postId = $(e.target.parentElement).attr('id');
-			App.posts.get(postId).destroy();
+			var sure = confirm('Are you sure you want to delete this entry?');
+			if(sure){
+				App.posts.get(postId).destroy();
+			};
 		},
 
 		complete: function(e){
 			var postId = $(e.target.parentElement).attr('id');
-			App.posts.get(postId).set('status','done').save();
+			App.router.navigate('#/complete/' + postId, { trigger: true });
 		}
 
 	});

@@ -12,7 +12,8 @@
 			'addPost': 'addPost',
 			'editPost/:id': 'editPost',
 			'single/:id': 'singlePost',
-			'done': 'done'
+			'done': 'done',
+			'complete/:id': 'complete'
 		},
 
 		home: function(){
@@ -45,6 +46,11 @@
 
 		done: function(){
 			new App.Views.Done();
+		},
+
+		complete: function(id){
+			var post = App.posts.get(id);
+			new App.Views.Complete(post);
 		}
 
 	});
