@@ -5,6 +5,11 @@
 		tagName: 'ul',
 		className: 'postList',
 
+		events: {
+			'click #delete': 'delete',
+			'click #incomplete': 'incomplete'
+		},
+
 		template: _.template($('#donePosts').html()),
 
 		initialize: function(){
@@ -14,6 +19,7 @@
 			$('#content').html(this.$el);
 
 			App.posts.on('change', this.render, this);
+			App.posts.on('destroy', this.render, this);
 
 		},
 
@@ -32,6 +38,18 @@
 				self.$el.append(post);
 			});
 
+		},
+
+		delete: function(e){
+			e.preventDefault();
+			var postId = $(e.target.parentElement).attr('id');
+			console.log(postId);
+			App.posts.get(postId).destroy();
+		},
+
+		incomplete: function(e){
+			var postId = $(e.target.parentElement).attr('id');
+			App.posts.get(postId).set('status','incomplete').save();
 		}
 
 	});

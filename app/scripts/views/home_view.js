@@ -6,7 +6,8 @@
 		className: 'postList',
 
 		events: {
-			'click #delete': 'delete'
+			'click #delete': 'delete',
+			'click #complete': 'complete'
 		},
 
 		template: _.template($('#homePosts').html()),
@@ -16,6 +17,7 @@
 			$('#content').html(this.$el);
 
 			App.posts.on('change', this.render, this);
+			App.posts.on('destroy', this.render, this);
 		},
 
 		render: function(){
@@ -35,15 +37,12 @@
 		delete: function(e){
 			e.preventDefault();
 			var postId = $(e.target.parentElement).attr('id');
-			// App.posts.get(postId).destroy();
-			App.posts.get(postId).set('status','done').save(null, {
-				success: function(){
-					console.log("Post Finished");
-				},
-				error: function(){
-					console.log("Finish failed");
-				}
-			});
+			App.posts.get(postId).destroy();
+		},
+
+		complete: function(e){
+			var postId = $(e.target.parentElement).attr('id');
+			App.posts.get(postId).set('status','done').save();
 		}
 
 	});

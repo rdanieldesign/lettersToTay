@@ -12,9 +12,7 @@
 		template: _.template($('#editPost').html()),
 
 		initialize: function(options){
-
 			this.options = options;
-			console.log(this.options);
 			this.render();
 			$('#content').html(this.$el);
 		},
