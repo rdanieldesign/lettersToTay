@@ -10,7 +10,9 @@
 			title: '',
 			author: '',
 			description: '',
-			status: ''
+			status: '',
+			category: '',
+			image: ''
 		},
 
 		initialize: function(){}

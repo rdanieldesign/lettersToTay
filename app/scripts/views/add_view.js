@@ -30,6 +30,7 @@
 				title: $('#newTitle').val(),
 				author: 'Richard Daniel',
 				description: $('#newTextContent').val(),
+				category: $('#addCategory option:selected').val(),
 				status: 'incomplete'
 			});
 

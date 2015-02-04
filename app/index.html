@@ -29,6 +29,14 @@
         <a href="#/addPost">Add</a>
         <a href="#/done">Done</a>
         <a href="#/login">Login</a>
+        <select id="category">
+          <option value="all">All</option>
+          <option value="movies">Movies</option>
+          <option value="restaurants">Restaurants</option>
+          <option value="drinks">Drinks</option>
+          <option value="hikes">Hikes</option>
+          <option value="other">Other</option>
+        </select>
       </nav>
 
       <!-- Dynamic Content Area -->
@@ -59,8 +67,9 @@
         <button id="delete">X</button>
         <p>by <%= author %></p>
         <p><%= description %></p>
-        <p><%= updatedAt %></p>
+        <p>Completed: <%= completed.iso %></p>
         <img src="<%= image.url %>" alt="">
+        <button id="changeImage">Change Image</button>
         <a href="#/single/<%= objectId %>">View Post</a>
         <a href="#/editPost/<%= objectId %>">Edit Post</a>
         <button id="incomplete">Mark as Incomplete</button>
@@ -101,6 +110,14 @@
     <script type="text/template" id="addPost">
       <input id="newTitle" placeholder="Add a Title"></input>
       <textarea name="" id="newTextContent" placeholder="Add Text Content"></textarea>
+      <select id="addCategory">
+        <option value="all">All</option>
+        <option value="movies">Movies</option>
+        <option value="restaurants">Restaurants</option>
+        <option value="drinks">Drinks</option>
+        <option value="hikes">Hikes</option>
+        <option value="other">Other</option>
+      </select>
       <button id="createPost">Add Post</button>
     </script>
     <!-- End Add Template -->

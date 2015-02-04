@@ -40,7 +40,8 @@
 				success: function(){
 					App.posts.get(post.id).set({
 						'status': 'done',
-						'image': parseFile
+						'image': parseFile,
+						'completed': new Date()
 					}).save(null, {
 						success: function(){
 							App.router.navigate('#/done', { trigger: true });

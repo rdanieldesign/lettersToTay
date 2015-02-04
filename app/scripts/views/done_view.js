@@ -7,7 +7,8 @@
 
 		events: {
 			'click #delete': 'delete',
-			'click #incomplete': 'incomplete'
+			'click #incomplete': 'incomplete',
+			'click #changeImage': 'changeImage'
 		},
 
 		template: _.template($('#donePosts').html()),
@@ -52,6 +53,11 @@
 		incomplete: function(e){
 			var postId = $(e.target.parentElement).attr('id');
 			App.posts.get(postId).set('status','incomplete').save();
+		},
+
+		changeImage: function(e){
+			var postId = $(e.target.parentElement).attr('id');
+			App.router.navigate('#/complete/'+ postId, { trigger: true });
 		}
 
 	});
