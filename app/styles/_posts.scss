@@ -1,7 +1,51 @@
 .postList {
 
 	li {
-		padding: 20px 0;
+		padding: 40px 0 40px 0;
 		border-bottom: 3px solid $lgrey;
+		width: 100%;
+		overflow: auto;
+	}
+
+	.textContent {
+		width: 60%;
+		float: left;
+		padding-right: 40px;
+	}
+
+	.imageContent {
+		width: 40%;
+		float: left;
+		position: relative;
+
+		button {
+			position: absolute;
+		}
+	}
+
+	h3 {
+		display: inline;
+		vertical-align: middle;
+		margin-right: 16px;
+	}
+
+	button#delete {
+		font-size: 1em;
+		line-height: 1em;
+		padding: 7px 8px;
+		vertical-align: middle;
+	}
+
+	.author, .date {
+		font-size: 1.2em;
+		line-height: 1em;
+	}
+
+	.description {
+		margin: 20px 0;
+	}
+
+	a {
+		margin-right: 16px;
 	}
 }

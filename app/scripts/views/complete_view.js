@@ -32,29 +32,36 @@
 				var file = upload.files[0];
 				var name = 'image.jpg';
 				var parseFile = new Parse.File(name, file);
+				parseFile.save({
+					success: function(){
+						App.posts.get(post.id).set({
+							'status': 'done',
+							'image': parseFile,
+						}).save(null, {
+							success: function(){
+								App.router.navigate('#/done', { trigger: true });
+							},
+							error: function(){
+								console.log('Failed to save with image');
+							}
+						});
+					},
+					error: function(){
+						console.log('Image upload failed');
+					}
+				});
+			} else {
+				App.posts.get(post.id).set({
+					'status': 'done',
+				}).save(null, {
+					success: function(){
+						App.router.navigate('#/done', { trigger: true });
+					},
+					error: function(){
+						console.log('Failed to complete');
+					}
+				});
 			};
-
-			console.log(parseFile);
-
-			parseFile.save({
-				success: function(){
-					App.posts.get(post.id).set({
-						'status': 'done',
-						'image': parseFile,
-						'completed': new Date()
-					}).save(null, {
-						success: function(){
-							App.router.navigate('#/done', { trigger: true });
-						},
-						error: function(){
-							console.log('Failed to complete');
-						}
-					});
-				},
-				error: function(){
-					console.log('Image upload failed');
-				}
-			});
 		}
 
 	});

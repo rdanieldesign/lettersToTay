@@ -33,6 +33,7 @@
           <a href="#/">Home</a>
           <a href="#/done">History</a>
           <a href="#/login">Login</a>
+          <span class="catSpan">Category:</span>
           <select id="category">
             <option value="all">All</option>
             <option value="movies">Movies</option>
@@ -60,9 +61,8 @@
         <button id="delete">X</button>
         <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
         <p class="description"><%= description %></p>
-        <a href="#/single/<%= objectId %>">View Post</a>
-        <a href="#/editPost/<%= objectId %>">Edit Post</a>
-        <button id="complete">Mark as Complete</button>
+        <a href="#/editPost/<%= objectId %>">Edit</a>
+        <button id="complete">Mark Complete</button>
       </li>
     </script>
     <!-- End Home Template -->
@@ -70,16 +70,18 @@
     <!-- Done Template -->
     <script type="text/template" id="donePosts">
       <li id="<%= objectId %>">
-        <h3><%= title %></h3>
-        <button id="delete">X</button>
-        <p>by <%= author %></p>
-        <p><%= description %></p>
-        <p>Completed: <%= completed.iso %></p>
-        <img src="<%= image.url %>" alt="">
-        <button id="changeImage">Change Image</button>
-        <a href="#/single/<%= objectId %>">View Post</a>
-        <a href="#/editPost/<%= objectId %>">Edit Post</a>
-        <button id="incomplete">Mark as Incomplete</button>
+        <div class="textContent">
+          <h3><%= title %></h3>
+          <button id="delete">X</button>
+          <p class="author">completed on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+          <p><%= description %></p>
+          <a href="#/editPost/<%= objectId %>">Edit</a>
+          <button id="incomplete">Mark Incomplete</button>
+        </div>
+        <div class="imageContent">
+          <img src="<%= image.url %>" alt="">
+          <button id="changeImage">Change Image</button>
+        </div>
       </li>
     </script>
     <!-- End Done Template -->
@@ -87,11 +89,10 @@
     <!-- Complete Template -->
     <script type="text/template" id="complete">
       <h3><%= title %></h3>
-      <p>by <%= author %></p>
+      <p class="author">added by <%= author %></p>
       <p><%= description %></p>
-      <p><%= updatedAt %></p>
       <input id="cameraUpload" type="file" capture="camera" placeholder="Upload an Image">
-      <button id="markComplete">Mark as Completed</button>
+      <button id="markComplete">Mark Completed</button>
     </script>
     <!-- End Complete Template -->
 
@@ -107,9 +108,8 @@
     <!-- Single Template -->
     <script type="text/template" id="singlePost">
       <h3><%= title %></h3>
-      <p>by <%= author %></p>
-      <p><%= description %></p>
-      <p><%= updatedAt %></p>
+      <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+      <p class="description"><%= description %></p>
     </script>
     <!-- End Single Template -->
 
