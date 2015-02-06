@@ -2,25 +2,127 @@
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
-// Custom Styles
-body {
-  background: #fafafa;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
-}
+// Partials
+@import 'fonts';
+@import 'colors';
+@import 'posts';
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
+// Standard Styles
+body {
+  font-family: $lora;
+  font-size: 62.5%;
   font-weight: 200;
   line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+  color: $dgrey;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h3 {
+  font-family: $montserrat;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2.4em;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: $red;
+  font-size: 1.6em;
+}
+
+button {
+  border: none;
+  color: $white;
+  background-color: $red;
+  font-size: 1.4em;
+  font-family: $montserrat;
+  padding: 6px 16px;
+  border-radius: 2px;
+}
+
+input, select {
+  font-size: 1.4em;
+}
+
+p {
+  font-family: $lora;
+  font-size: 1.6em;
+  font-weight: 400;
+}
+
+// Custom Styles
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  background-color: $lgrey;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 1000px;
+  background-color: $white;
+}
+
+nav {
+
+  .container {
+    border-bottom: 3px solid $lgrey;
   }
+
+  a {
+    margin-right: 16px;
+
+    button {
+      font-size: 1em;
+      line-height: 1em;
+      padding: 8px 12px;
+      vertical-align: middle;
+    }
+  }
+
+  a.addButton {
+    float: right;
+  }
+}
+
+#content {
+
+  h3 {
+    display: inline;
+    vertical-align: middle;
+    margin-right: 16px;
+  }
+
+  button#delete {
+    font-size: 1em;
+    line-height: 1em;
+    padding: 7px 8px;
+    vertical-align: middle;
+  }
+
+  .author, .date {
+    font-size: 1.2em;
+    line-height: 1em;
+  }
+
+  .description {
+    margin: 20px 0;
+  }
+
+  a {
+    margin-right: 16px;
+  }
+
 }

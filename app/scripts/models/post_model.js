@@ -12,7 +12,7 @@
 			description: '',
 			status: '',
 			category: '',
-			image: ''
+			completed: ''
 		},
 
 		initialize: function(){}

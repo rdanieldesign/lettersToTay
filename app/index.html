@@ -13,6 +13,10 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lora|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- end fonts -->
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -23,24 +27,28 @@
   </head>
   <body>
 
-    <div class="hero-unit">
+    <div class="wrapper">
       <nav>
-        <a href="#/">Home</a>
-        <a href="#/addPost">Add</a>
-        <a href="#/done">Done</a>
-        <a href="#/login">Login</a>
-        <select id="category">
-          <option value="all">All</option>
-          <option value="movies">Movies</option>
-          <option value="restaurants">Restaurants</option>
-          <option value="drinks">Drinks</option>
-          <option value="hikes">Hikes</option>
-          <option value="other">Other</option>
-        </select>
+        <div class="container">
+          <a href="#/">Home</a>
+          <a href="#/done">History</a>
+          <a href="#/login">Login</a>
+          <select id="category">
+            <option value="all">All</option>
+            <option value="movies">Movies</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="drinks">Drinks</option>
+            <option value="hikes">Hikes</option>
+            <option value="other">Other</option>
+          </select>
+          <a class="addButton" href="#/addPost">
+            <button>+</button>
+          </a>
+        </div>
       </nav>
 
       <!-- Dynamic Content Area -->
-      <div id="content"></div>
+      <div id="content" class="container"></div>
       <!-- End Dynamic Content Area -->
 
     </div>
@@ -50,9 +58,8 @@
       <li id="<%= objectId %>">
         <h3><%= title %></h3>
         <button id="delete">X</button>
-        <p>by <%= author %></p>
-        <p><%= description %></p>
-        <p><%= updatedAt %></p>
+        <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+        <p class="description"><%= description %></p>
         <a href="#/single/<%= objectId %>">View Post</a>
         <a href="#/editPost/<%= objectId %>">Edit Post</a>
         <button id="complete">Mark as Complete</button>
@@ -144,6 +151,7 @@
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
