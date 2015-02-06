@@ -1,0 +1,27 @@
+.loginForm {
+	width: 50%;
+	margin: 0 auto;
+
+	.catSpan {
+		font-family: $montserrat;
+		font-size: 1.4em;
+		font-weight: 400;
+		margin-right: 6px;
+	}
+
+	input {
+		height: 40px;
+		width: 100%;
+		margin-bottom: 16px;
+	}
+
+	textarea {
+		height: 100px;
+		width: 100%;
+		margin-bottom: 16px;
+	}
+
+	button {
+		margin-right: 10px;
+	}
+}

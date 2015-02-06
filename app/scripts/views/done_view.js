@@ -43,7 +43,7 @@
 
 		delete: function(e){
 			e.preventDefault();
-			var postId = $(e.target.parentElement).attr('id');
+			var postId = $(e.target.parentElement.parentElement).attr('id');
 			var sure = confirm('Are you sure you want to delete this entry?');
 			if(sure){
 				App.posts.get(postId).destroy();
@@ -51,12 +51,13 @@
 		},
 
 		incomplete: function(e){
-			var postId = $(e.target.parentElement).attr('id');
+			var postId = $(e.target.parentElement.parentElement).attr('id');
+			console.log(e);
 			App.posts.get(postId).set('status','incomplete').save();
 		},
 
 		changeImage: function(e){
-			var postId = $(e.target.parentElement).attr('id');
+			var postId = $(e.target.parentElement.parentElement).attr('id');
 			App.router.navigate('#/complete/'+ postId, { trigger: true });
 		}
 
