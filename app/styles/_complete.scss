@@ -1,0 +1,43 @@
+.completeForm {
+	width: 50%;
+	margin: 0 auto;
+
+	input {
+		height: 40px;
+		width: 100%;
+		margin-bottom: 16px;
+	}
+
+	textarea {
+		height: 100px;
+		width: 100%;
+		margin-bottom: 16px;
+	}
+
+	.catSpan {
+		font-family: $montserrat;
+		font-size: 1.4em;
+		font-weight: 400;
+		margin-right: 6px;
+	}
+
+	#cameraUpload {
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+
+	input[type="file"]::-webkit-file-upload-button {
+		border: 2px solid $red;
+		background-color: $white;
+		font-family: $montserrat;
+		color: $red;
+		border-radius: 2px;
+		margin-right: 16px;
+	}
+
+	.author, .date {
+		font-size: 1.2em;
+		line-height: 1em;
+	}
+}

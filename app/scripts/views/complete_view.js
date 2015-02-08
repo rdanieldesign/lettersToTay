@@ -2,9 +2,6 @@
 
 	App.Views.Complete = Parse.View.extend({
 
-		tagName: 'form',
-		className: 'completeForm',
-
 		events: {
 			'click #markComplete': 'complete'
 		},
@@ -14,13 +11,12 @@
 		initialize: function(options){
 			this.options = options;
 			this.render();
-			$('#content').html(this.$el);
 		},
 
 		render: function(){
 			$('#content').empty();
 			var form = this.template(this.options.toJSON());
-			this.$el.html(form);
+			$('#content').html(form);
 		},
 
 		complete: function(){
