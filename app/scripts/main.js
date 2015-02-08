@@ -12,7 +12,7 @@ Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhT
 	App.posts.fetch({
 		success: function(){
 			// Initialize Router
-			App.router = new App.Router.AppRouter();
+			App.router = new App.Routers.AppRouter();
 		},
 		error: function(){
 			console.log('Posts could not be fetched');

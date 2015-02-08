@@ -1,6 +1,6 @@
 (function(){
 
-	App.Router.AppRouter = Parse.Router.extend({
+	App.Routers.AppRouter = Parse.Router.extend({
 
 		initialize: function(){
 			Parse.history.start();
@@ -17,13 +17,7 @@
 		},
 
 		home: function(){
-			if(App.user){
-				new App.Views.Home();
-			} else {
-				console.log(App);
-				App.router.navigate('#/login', { trigger: true });
-				alert('Please Log In');
-			}
+			new App.Views.Home();
 		},
 
 		login: function(){
@@ -31,12 +25,24 @@
 		},
 
 		addPost: function(){
-			new App.Views.AddPost();
+			if(App.user){
+				new App.Views.AddPost();
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		editPost: function(id){
-			var post = App.posts.get(id);
-			new App.Views.EditPost(post);
+			if(App.user){
+				var post = App.posts.get(id);
+				new App.Views.EditPost(post);
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		singlePost: function(id){
@@ -45,7 +51,13 @@
 		},
 
 		done: function(){
-			new App.Views.Done();
+			if(App.user){
+				new App.Views.Done();
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		complete: function(id){

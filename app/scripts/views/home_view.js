@@ -13,17 +13,22 @@
 		template: _.template($('#homePosts').html()),
 
 		initialize: function(){
-			var self = this;
+			if(App.user){
+				var self = this;
 
-			this.render();
-			$('#content').html(this.$el);
+				this.render();
+				$('#content').html(this.$el);
 
-			$('#category').on('change', function(){
-				self.filter();
-			});
+				$('#category').on('change', function(){
+					self.filter();
+				});
 
-			App.posts.on('change', this.render, this);
-			App.posts.on('destroy', this.render, this);
+				App.posts.on('change', this.render, this);
+				App.posts.on('destroy', this.render, this);
+			} else {
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		render: function(){
