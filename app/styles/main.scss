@@ -7,6 +7,7 @@
 @import 'colors';
 @import 'posts';
 @import 'add';
+@import 'edit';
 @import 'login';
 
 // Standard Styles
@@ -16,6 +17,7 @@ body {
   font-weight: 200;
   line-height: 30px;
   color: $dgrey;
+  background-color: $lgrey;
   box-sizing: border-box;
 }
 
@@ -91,7 +93,6 @@ p {
 .wrapper {
   margin: 0 auto;
   width: 100%;
-  background-color: $lgrey;
 }
 
 .container {

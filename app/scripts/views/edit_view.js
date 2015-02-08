@@ -2,8 +2,6 @@
 
 	App.Views.EditPost = Parse.View.extend({
 
-		tagName: 'form',
-		className: 'editForm',
 
 		events: {
 			'click #submitEdit': 'edit'

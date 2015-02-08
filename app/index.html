@@ -131,9 +131,11 @@
 
     <!-- Edit Template -->
     <script type="text/template" id="editPost">
-      <input id="newTitle" value="<%= title %>"></input>
-      <textarea id="newTextContent"><%= description %></textarea>
-      <button id="submitEdit">Edit Post</button>
+      <form class="editForm">
+        <input id="newTitle" value="<%= title %>"></input>
+        <textarea id="newTextContent"><%= description %></textarea>
+        <button id="submitEdit">Edit Post</button>
+      </form>
     </script>
     <!-- End Edit Template -->
 
