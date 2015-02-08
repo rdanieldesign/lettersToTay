@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Taylor</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor.css">
+
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lora|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- end fonts -->
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <nav>
+        <div class="container">
+          <a href="#/">Home</a>
+          <a href="#/done">History</a>
+          <a href="#/login">Login</a>
+          <span class="catSpan">Category:</span>
+          <select id="category">
+            <option value="all">All</option>
+            <option value="movies">Movies</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="drinks">Drinks</option>
+            <option value="hikes">Hikes</option>
+            <option value="other">Other</option>
+          </select>
+          <a class="addButton" href="#/addPost">
+            <button>+</button>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Dynamic Content Area -->
+      <div id="content" class="container"></div>
+      <!-- End Dynamic Content Area -->
+
+    </div>
+
+    <!-- Home Template -->
+    <script type="text/template" id="homePosts">
+      <li id="<%= objectId %>">
+        <h3><%= title %></h3>
+        <button id="delete">X</button>
+        <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+        <p class="description"><%= description %></p>
+        <a href="#/editPost/<%= objectId %>">Edit</a>
+        <button id="complete">Mark Complete</button>
+      </li>
+    </script>
+    <!-- End Home Template -->
+
+    <!-- Done Template -->
+    <script type="text/template" id="donePosts">
+      <li id="<%= objectId %>">
+        <div class="textContent">
+          <h3><%= title %></h3>
+          <button id="delete">X</button>
+          <p class="author">completed on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+          <p><%= description %></p>
+          <a href="#/editPost/<%= objectId %>">Edit</a>
+          <button id="incomplete">Mark Incomplete</button>
+        </div>
+        <div class="imageContent">
+          <img src="<%= image.url %>" alt="">
+          <button id="changeImage">Change Image</button>
+        </div>
+      </li>
+    </script>
+    <!-- End Done Template -->
+
+    <!-- Complete Template -->
+    <script type="text/template" id="complete">
+      <h3><%= title %></h3>
+      <p class="author">added by <%= author %></p>
+      <p><%= description %></p>
+      <input id="cameraUpload" type="file" capture="camera" placeholder="Upload an Image">
+      <button id="markComplete">Mark Completed</button>
+    </script>
+    <!-- End Complete Template -->
+
+    <!-- Login Template -->
+    <script type="text/template" id="login">
+      <input id="username" placeholder="Username"></input>
+      <input id="password" type="password" placeholder="Password"></input>
+      <button id="submitLogin">Log In</button>
+      <button id="logout">Log Out</button>
+    </script>
+    <!-- End Login Template -->
+
+    <!-- Single Template -->
+    <script type="text/template" id="singlePost">
+      <h3><%= title %></h3>
+      <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
+      <p class="description"><%= description %></p>
+    </script>
+    <!-- End Single Template -->
+
+    <!-- Add Template -->
+    <script type="text/template" id="addPost">
+      <input id="newTitle" placeholder="Add a Title"></input>
+      <textarea name="" id="newTextContent" placeholder="Add Text Content"></textarea>
+      <span class="catSpan">Category:</span><select id="addCategory">
+        <option value="all">All</option>
+        <option value="movies">Movies</option>
+        <option value="restaurants">Restaurants</option>
+        <option value="drinks">Drinks</option>
+        <option value="hikes">Hikes</option>
+        <option value="other">Other</option>
+      </select>
+      <button id="createPost">Add Post</button>
+    </script>
+    <!-- End Add Template -->
+
+    <!-- Edit Template -->
+    <script type="text/template" id="editPost">
+      <form class="editForm">
+        <input id="newTitle" value="<%= title %>"></input>
+        <textarea id="newTextContent"><%= description %></textarea>
+        <button id="submitEdit">Edit Post</button>
+      </form>
+    </script>
+    <!-- End Edit Template -->
+
+    <!-- Bind App object to Window -->
+    <script type="text/javascript">
+      window.App = {};
+      App.Models = {};
+      App.Collections = {};
+      App.Views = {};
+      App.Router = {};
+    </script>
+
+    <script src="scripts/vendor.js"></script>
+
+    <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>
+
+    <script src="scripts/main.js"></script>
+
+  </body>
+</html>
