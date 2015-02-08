@@ -1,5 +1,75 @@
 (function(){
 
+	App.Routers.AppRouter = Parse.Router.extend({
+
+		initialize: function(){
+			Parse.history.start();
+		},
+
+		routes: {
+			'': 'home',
+			'login': 'login',
+			'addPost': 'addPost',
+			'editPost/:id': 'editPost',
+			'single/:id': 'singlePost',
+			'done': 'done',
+			'complete/:id': 'complete'
+		},
+
+		home: function(){
+			new App.Views.Home();
+		},
+
+		login: function(){
+			new App.Views.Login();
+		},
+
+		addPost: function(){
+			if(App.user){
+				new App.Views.AddPost();
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
+		},
+
+		editPost: function(id){
+			if(App.user){
+				var post = App.posts.get(id);
+				new App.Views.EditPost(post);
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
+		},
+
+		singlePost: function(id){
+			var post = App.posts.get(id);
+			new App.Views.SingleView(post);
+		},
+
+		done: function(){
+			if(App.user){
+				new App.Views.Done();
+			} else {
+				console.log(App);
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
+		},
+
+		complete: function(id){
+			var post = App.posts.get(id);
+			new App.Views.Complete(post);
+		}
+
+	});
+
+}());
+(function(){
+
 	App.Models.Post = Parse.Object.extend({
 
 		className: 'Post',
@@ -48,17 +118,22 @@
 		template: _.template($('#homePosts').html()),
 
 		initialize: function(){
-			var self = this;
+			if(App.user){
+				var self = this;
 
-			this.render();
-			$('#content').html(this.$el);
+				this.render();
+				$('#content').html(this.$el);
 
-			$('#category').on('change', function(){
-				self.filter();
-			});
+				$('#category').on('change', function(){
+					self.filter();
+				});
 
-			App.posts.on('change', this.render, this);
-			App.posts.on('destroy', this.render, this);
+				App.posts.on('change', this.render, this);
+				App.posts.on('destroy', this.render, this);
+			} else {
+				App.router.navigate('#/login', { trigger: true });
+				alert('Please Log In');
+			}
 		},
 
 		render: function(){
@@ -421,64 +496,6 @@
 	});
 
 }());
-(function(){
-
-	App.Router.AppRouter = Parse.Router.extend({
-
-		initialize: function(){
-			Parse.history.start();
-		},
-
-		routes: {
-			'': 'home',
-			'login': 'login',
-			'addPost': 'addPost',
-			'editPost/:id': 'editPost',
-			'single/:id': 'singlePost',
-			'done': 'done',
-			'complete/:id': 'complete'
-		},
-
-		home: function(){
-			if(App.user){
-				new App.Views.Home();
-			} else {
-				console.log(App);
-				App.router.navigate('#/login', { trigger: true });
-				alert('Please Log In');
-			}
-		},
-
-		login: function(){
-			new App.Views.Login();
-		},
-
-		addPost: function(){
-			new App.Views.AddPost();
-		},
-
-		editPost: function(id){
-			var post = App.posts.get(id);
-			new App.Views.EditPost(post);
-		},
-
-		singlePost: function(id){
-			var post = App.posts.get(id);
-			new App.Views.SingleView(post);
-		},
-
-		done: function(){
-			new App.Views.Done();
-		},
-
-		complete: function(id){
-			var post = App.posts.get(id);
-			new App.Views.Complete(post);
-		}
-
-	});
-
-}());
 Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhTxWVr26Nne6n8KMA6WLsUeu");
 
 (function(){
@@ -493,7 +510,7 @@ Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhT
 	App.posts.fetch({
 		success: function(){
 			// Initialize Router
-			App.router = new App.Router.AppRouter();
+			App.router = new App.Routers.AppRouter();
 		},
 		error: function(){
 			console.log('Posts could not be fetched');
