@@ -2,6 +2,9 @@
 
 	App.Views.Complete = Parse.View.extend({
 
+		tagName: 'form',
+		className: 'completeForm',
+
 		events: {
 			'click #markComplete': 'complete'
 		},
@@ -11,15 +14,19 @@
 		initialize: function(options){
 			this.options = options;
 			this.render();
+			$('#content').html(this.$el);
 		},
 
 		render: function(){
+			this.$el.empty();
 			$('#content').empty();
 			var form = this.template(this.options.toJSON());
-			$('#content').html(form);
+			this.$el.html(form);
 		},
 
-		complete: function(){
+		complete: function(e){
+			console.log('clicked');
+			e.preventDefault();
 			var post = this.options;
 
 			// Image Upload to Parse
@@ -30,11 +37,13 @@
 				var parseFile = new Parse.File(name, file);
 				parseFile.save({
 					success: function(){
+						console.log('Image Saved!');
 						App.posts.get(post.id).set({
 							'status': 'done',
 							'image': parseFile,
 						}).save(null, {
 							success: function(){
+								console.log('Post Saved!');
 								App.router.navigate('#/done', { trigger: true });
 							},
 							error: function(){
@@ -57,7 +66,7 @@
 						console.log('Failed to complete');
 					}
 				});
-			};
+			}
 		}
 
 	});
