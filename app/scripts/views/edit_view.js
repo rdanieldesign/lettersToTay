@@ -6,7 +6,7 @@
 			'click #submitEdit': 'edit'
 		},
 
-		template: _.template($('#editPost').html()),
+		template: Handlebars.compile($('#editPost').html()),
 
 		initialize: function(options){
 			this.options = options;

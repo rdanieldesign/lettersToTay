@@ -9,7 +9,7 @@
 			'click #createPost': 'createPost'
 		},
 
-		template: _.template($('#addPost').html()),
+		template: Handlebars.compile($('#addPost').html()),
 
 		initialize: function(){
 			this.render();

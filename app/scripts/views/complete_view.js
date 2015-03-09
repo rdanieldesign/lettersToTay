@@ -9,7 +9,7 @@
 			'click #markComplete': 'complete'
 		},
 
-		template: _.template($('#complete').html()),
+		template: Handlebars.compile($('#complete').html()),
 
 		initialize: function(options){
 			this.options = options;

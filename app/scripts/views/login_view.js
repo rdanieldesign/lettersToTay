@@ -10,7 +10,7 @@
 			'click #logout': 'logout'
 		},
 
-		template: _.template($('#login').html()),
+		template: Handlebars.compile($('#login').html()),
 
 		initialize: function(){
 			this.render();

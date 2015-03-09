@@ -56,12 +56,12 @@
 
     <!-- Home Template -->
     <script type="text/template" id="homePosts">
-      <li id="<%= objectId %>">
-        <h3><%= title %></h3>
+      <li id="{{ objectId }}">
+        <h3>{{ title }}</h3>
         <button id="delete">X</button>
-        <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
-        <p class="description"><%= description %></p>
-        <a href="#/editPost/<%= objectId %>">Edit</a>
+        <p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
+        <p class="description">{{ description }}</p>
+        <a href="#/editPost/{{ objectId }}">Edit</a>
         <button id="complete">Mark Complete</button>
       </li>
     </script>
@@ -69,17 +69,17 @@
 
     <!-- Done Template -->
     <script type="text/template" id="donePosts">
-      <li id="<%= objectId %>">
+      <li id="{{ objectId }}">
         <div class="textContent">
-          <h3><%= title %></h3>
+          <h3>{{ title }}</h3>
           <button id="delete">X</button>
-          <p class="author">completed on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
-          <p><%= description %></p>
-          <a href="#/editPost/<%= objectId %>">Edit</a>
+          <p class="author">completed on {{timestamp updatedAt}}</p>
+          <p>{{ description }}</p>
+          <a href="#/editPost/{{ objectId }}">Edit</a>
           <button id="incomplete">Mark Incomplete</button>
         </div>
         <div class="imageContent">
-          <img src="<%= image.url %>" alt="">
+          <img src="{{ image.url }}" alt="">
           <button id="changeImage">Change Image</button>
         </div>
       </li>
@@ -88,9 +88,9 @@
 
     <!-- Complete Template -->
     <script type="text/template" id="complete">
-      <h3><%= title %></h3>
-      <p class="author">added by <%= author %></p>
-      <p><%= description %></p>
+      <h3>{{ title }}</h3>
+      <p class="author">added by {{ author }}</p>
+      <p>{{ description }}</p>
       <span class="catSpan">Add a picture:</span><input id="cameraUpload" type="file" capture="camera" placeholder="Upload an Image">
       <button id="markComplete">Mark Completed</button>
     </script>
@@ -107,9 +107,9 @@
 
     <!-- Single Template -->
     <script type="text/template" id="singlePost">
-      <h3><%= title %></h3>
-      <p class="author">added by <%= author %> on <%= moment(updatedAt).format('MMMM Do, YYYY') %></p>
-      <p class="description"><%= description %></p>
+      <h3>{{ title }}</h3>
+      <p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
+      <p class="description">{{ description }}</p>
     </script>
     <!-- End Single Template -->
 
@@ -132,8 +132,8 @@
     <!-- Edit Template -->
     <script type="text/template" id="editPost">
       <form class="editForm">
-        <input id="newTitle" value="<%= title %>"></input>
-        <textarea id="newTextContent"><%= description %></textarea>
+        <input id="newTitle" value="{{ title }}"></input>
+        <textarea id="newTextContent">{{ description }}</textarea>
         <button id="submitEdit">Edit Post</button>
       </form>
     </script>

@@ -11,7 +11,7 @@
 			'click #changeImage': 'changeImage'
 		},
 
-		template: _.template($('#donePosts').html()),
+		template: Handlebars.compile($('#donePosts').html()),
 
 		initialize: function(){
 
@@ -52,7 +52,6 @@
 
 		incomplete: function(e){
 			var postId = $(e.target.parentElement.parentElement).attr('id');
-			console.log(e);
 			App.posts.get(postId).set('status','incomplete').save();
 		},
 

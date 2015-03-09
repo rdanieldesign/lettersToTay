@@ -10,7 +10,7 @@
 			'click #complete': 'complete'
 		},
 
-		template: _.template($('#homePosts').html()),
+		template: Handlebars.compile($('#homePosts').html()),
 
 		initialize: function(){
 			if(App.user){

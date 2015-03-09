@@ -19,4 +19,11 @@ Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhT
 		}
 	});
 
+
+	// Hanldebars helpers
+
+	Handlebars.registerHelper('timestamp', function(time){
+		return moment(time).format('MMMM Do, YYYY');
+	});
+
 }());
