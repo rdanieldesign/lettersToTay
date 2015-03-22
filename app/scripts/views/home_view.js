@@ -35,13 +35,9 @@
 			var self = this;
 			var posts = App.posts.toJSON();
 			var incPosts = _.where(posts, {status: 'incomplete'});
-
 			this.$el.empty();
-
-			_.each(incPosts, function(x){
-				var post = self.template(x);
-				self.$el.append(post);
-			});
+			var post = this.template(incPosts);
+			this.$el.html(post);
 		},
 
 		delete: function(e){

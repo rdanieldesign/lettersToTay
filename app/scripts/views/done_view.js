@@ -27,17 +27,12 @@
 		render: function(){
 
 			$('#content').empty();
-
 			var self = this;
 			var posts = App.posts.toJSON();
 			var donePosts = _.where(posts, {status: 'done'});
-
 			this.$el.empty();
-
-			_.each(donePosts, function(x){
-				var post = self.template(x);
-				self.$el.append(post);
-			});
+			var post = this.template(donePosts);
+			this.$el.html(post);
 
 		},
 

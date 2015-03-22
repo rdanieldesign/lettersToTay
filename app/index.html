@@ -56,33 +56,43 @@
 
     <!-- Home Template -->
     <script type="text/template" id="homePosts">
-      <li id="{{ objectId }}">
-        <h3>{{ title }}</h3>
-        <button id="delete">X</button>
-        <p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
-        <p class="description">{{ description }}</p>
-        <a href="#/editPost/{{ objectId }}">Edit</a>
-        <button id="complete">Mark Complete</button>
-      </li>
+      {{#each this}}
+        <li id="{{ objectId }}">
+          <h3>{{ title }}</h3>
+          <button id="delete">X</button>
+          <p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
+          <p class="description">{{ description }}</p>
+          <a href="#/editPost/{{ objectId }}">Edit</a>
+          <button id="complete">Mark Complete</button>
+        </li>
+      {{else}}
+        <h3>No posts available</h3>
+        <p>Add your own now!</p>
+      {{/each}}
     </script>
     <!-- End Home Template -->
 
     <!-- Done Template -->
     <script type="text/template" id="donePosts">
-      <li id="{{ objectId }}">
-        <div class="textContent">
-          <h3>{{ title }}</h3>
-          <button id="delete">X</button>
-          <p class="author">completed on {{timestamp updatedAt}}</p>
-          <p>{{ description }}</p>
-          <a href="#/editPost/{{ objectId }}">Edit</a>
-          <button id="incomplete">Mark Incomplete</button>
-        </div>
-        <div class="imageContent">
-          <img src="{{ image.url }}" alt="">
-          <button id="changeImage">Change Image</button>
-        </div>
-      </li>
+      {{#each this}}
+        <li id="{{ objectId }}">
+          <div class="textContent">
+            <h3>{{ title }}</h3>
+            <button id="delete">X</button>
+            <p class="author">completed on {{timestamp updatedAt}}</p>
+            <p>{{ description }}</p>
+            <a href="#/editPost/{{ objectId }}">Edit</a>
+            <button id="incomplete">Mark Incomplete</button>
+          </div>
+          <div class="imageContent">
+            <img src="{{ image.url }}" alt="">
+            <button id="changeImage">Change Image</button>
+          </div>
+        </li>
+      {{else}}
+        <h3>No posts available</h3>
+        <p>Add your own now!</p>
+      {{/each}}
     </script>
     <!-- End Done Template -->
 
