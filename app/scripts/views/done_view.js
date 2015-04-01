@@ -25,7 +25,6 @@
 		},
 
 		render: function(){
-
 			$('#content').empty();
 			var self = this;
 			var posts = App.posts.toJSON();
@@ -33,7 +32,6 @@
 			this.$el.empty();
 			var post = this.template(donePosts);
 			this.$el.html(post);
-
 		},
 
 		delete: function(e){

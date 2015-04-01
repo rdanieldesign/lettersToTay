@@ -10,13 +10,9 @@
 		},
 
 		render: function(){
-
 			$('#content').empty();
-
 			var single = this.template(this.options.toJSON());
-
 			$('#content').html(single);
-
 		}
 
 	})

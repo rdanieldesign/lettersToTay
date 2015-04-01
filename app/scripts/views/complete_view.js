@@ -25,7 +25,6 @@
 		},
 
 		complete: function(e){
-			console.log('clicked');
 			e.preventDefault();
 			var post = this.options;
 

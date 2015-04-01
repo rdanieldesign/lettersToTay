@@ -13,22 +13,22 @@
 		template: Handlebars.compile($('#homePosts').html()),
 
 		initialize: function(){
+			var self = this;
 			if(App.user){
-				var self = this;
-
 				this.render();
-				$('#content').html(this.$el);
-
-				$('#category').on('change', function(){
-					self.filter();
-				});
-
-				App.posts.on('change', this.render, this);
-				App.posts.on('destroy', this.render, this);
 			} else {
 				App.router.navigate('#/login', { trigger: true });
 				alert('Please Log In');
 			}
+
+			$('#content').html(this.$el);
+
+			$('#category').on('change', function(){
+				self.filter();
+			});
+
+			App.posts.on('change', this.render, this);
+			App.posts.on('destroy', this.render, this);
 		},
 
 		render: function(){
@@ -61,16 +61,12 @@
 			this.$el.empty();
 			if(catSel === "all"){
 				var incPosts = _.where(posts, {status: 'incomplete'});
-				_.each(incPosts, function(x){
-					var post = self.template(x);
-					self.$el.append(post);
-				});
+				var post = self.template(incPosts);
+				self.$el.append(post);
 			} else {
 				var filtered = _.where(posts, {status: 'incomplete', category: catSel});
-				_.each(filtered, function(x){
-					var post = self.template(x);
-					self.$el.append(post);
-				});
+				var post = self.template(filtered);
+				self.$el.append(post);
 			};
 		}
 

@@ -34,7 +34,6 @@
 
 			editedPost.save(null, {
 				success: function(){
-					console.log("Post edited");
 					App.router.navigate('', { trigger: true });
 				},
 				error: function(){
