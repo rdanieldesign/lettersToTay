@@ -48,7 +48,7 @@ a {
   font-family: $montserrat;
 }
 
-button {
+button, select, label {
   border: none;
   color: $red;
   border: 2px solid $red;
@@ -57,6 +57,15 @@ button {
   font-family: $montserrat;
   padding: 6px 16px;
   border-radius: 2px;
+  -webkit-transition:background-color .125s, color .125s;
+  transition:background-color .125s, color .125s;
+
+  &:hover {
+    -webkit-transition:background-color .125s, color .125s;
+    transition:background-color .125s, color .125s;
+    background-color: $red;
+    color: $white;
+  }
 }
 
 input {
@@ -71,17 +80,6 @@ textarea {
   font-size: 1.4em;
   padding: 6px 10px;
   border: 2px solid $lgrey;
-}
-
-select {
-  font-family: $montserrat;
-  font-size: 1.4em;
-  font-weight: 400;
-  border: 2px solid $red;
-  border-radius: 2px;
-  padding: 6px 10px;
-  background-color: $white;
-  color: $red;
 }
 
 p {

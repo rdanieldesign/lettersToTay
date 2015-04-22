@@ -2,9 +2,6 @@
 
 	App.Views.Complete = Parse.View.extend({
 
-		tagName: 'form',
-		className: 'completeForm',
-
 		events: {
 			'click #markComplete': 'complete'
 		},
