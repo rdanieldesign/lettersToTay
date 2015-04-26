@@ -115,38 +115,34 @@
 			'click #complete': 'complete'
 		},
 
-		template: _.template($('#homePosts').html()),
+		template: Handlebars.compile($('#homePosts').html()),
 
 		initialize: function(){
+			var self = this;
 			if(App.user){
-				var self = this;
-
 				this.render();
-				$('#content').html(this.$el);
-
-				$('#category').on('change', function(){
-					self.filter();
-				});
-
-				App.posts.on('change', this.render, this);
-				App.posts.on('destroy', this.render, this);
 			} else {
 				App.router.navigate('#/login', { trigger: true });
 				alert('Please Log In');
 			}
+
+			$('#content').html(this.$el);
+
+			$('#category').on('change', function(){
+				self.filter();
+			});
+
+			App.posts.on('change', this.render, this);
+			App.posts.on('destroy', this.render, this);
 		},
 
 		render: function(){
 			var self = this;
 			var posts = App.posts.toJSON();
 			var incPosts = _.where(posts, {status: 'incomplete'});
-
 			this.$el.empty();
-
-			_.each(incPosts, function(x){
-				var post = self.template(x);
-				self.$el.append(post);
-			});
+			var post = this.template(incPosts);
+			this.$el.html(post);
 		},
 
 		delete: function(e){
@@ -170,16 +166,12 @@
 			this.$el.empty();
 			if(catSel === "all"){
 				var incPosts = _.where(posts, {status: 'incomplete'});
-				_.each(incPosts, function(x){
-					var post = self.template(x);
-					self.$el.append(post);
-				});
+				var post = self.template(incPosts);
+				self.$el.append(post);
 			} else {
 				var filtered = _.where(posts, {status: 'incomplete', category: catSel});
-				_.each(filtered, function(x){
-					var post = self.template(x);
-					self.$el.append(post);
-				});
+				var post = self.template(filtered);
+				self.$el.append(post);
 			};
 		}
 
@@ -198,7 +190,7 @@
 			'click #logout': 'logout'
 		},
 
-		template: _.template($('#login').html()),
+		template: Handlebars.compile($('#login').html()),
 
 		initialize: function(){
 			this.render();
@@ -240,7 +232,7 @@
 
 	App.Views.SingleView = Parse.View.extend({
 
-		template: _.template($('#singlePost').html()),
+		template: Handlebars.compile($('#singlePost').html()),
 
 		initialize: function(options){
 			this.options = options;
@@ -248,13 +240,9 @@
 		},
 
 		render: function(){
-
 			$('#content').empty();
-
 			var single = this.template(this.options.toJSON());
-
 			$('#content').html(single);
-
 		}
 
 	})
@@ -271,7 +259,7 @@
 			'click #createPost': 'createPost'
 		},
 
-		template: _.template($('#addPost').html()),
+		template: Handlebars.compile($('#addPost').html()),
 
 		initialize: function(){
 			this.render();
@@ -315,12 +303,11 @@
 
 	App.Views.EditPost = Parse.View.extend({
 
-
 		events: {
 			'click #submitEdit': 'edit'
 		},
 
-		template: _.template($('#editPost').html()),
+		template: Handlebars.compile($('#editPost').html()),
 
 		initialize: function(options){
 			this.options = options;
@@ -348,7 +335,6 @@
 
 			editedPost.save(null, {
 				success: function(){
-					console.log("Post edited");
 					App.router.navigate('', { trigger: true });
 				},
 				error: function(){
@@ -374,7 +360,7 @@
 			'click #changeImage': 'changeImage'
 		},
 
-		template: _.template($('#donePosts').html()),
+		template: Handlebars.compile($('#donePosts').html()),
 
 		initialize: function(){
 
@@ -388,20 +374,13 @@
 		},
 
 		render: function(){
-
 			$('#content').empty();
-
 			var self = this;
 			var posts = App.posts.toJSON();
 			var donePosts = _.where(posts, {status: 'done'});
-
 			this.$el.empty();
-
-			_.each(donePosts, function(x){
-				var post = self.template(x);
-				self.$el.append(post);
-			});
-
+			var post = this.template(donePosts);
+			this.$el.html(post);
 		},
 
 		delete: function(e){
@@ -415,7 +394,6 @@
 
 		incomplete: function(e){
 			var postId = $(e.target.parentElement.parentElement).attr('id');
-			console.log(e);
 			App.posts.get(postId).set('status','incomplete').save();
 		},
 
@@ -431,14 +409,12 @@
 
 	App.Views.Complete = Parse.View.extend({
 
-		tagName: 'form',
-		className: 'completeForm',
-
 		events: {
-			'click #markComplete': 'complete'
+			'click #markComplete': 'complete',
+			'change #cameraUpload': 'addImage'
 		},
 
-		template: _.template($('#complete').html()),
+		template: Handlebars.compile($('#complete').html()),
 
 		initialize: function(options){
 			this.options = options;
@@ -447,14 +423,16 @@
 		},
 
 		render: function(){
+			this.$el.empty();
 			$('#content').empty();
 			var form = this.template(this.options.toJSON());
 			this.$el.html(form);
 		},
 
-		complete: function(){
-			var post = this.options;
+		uploadedImage: "",
 
+		addImage: function(){
+			var self = this;
 			// Image Upload to Parse
 			var upload = $('#cameraUpload')[0];
 			if(upload.files.length > 0){
@@ -463,20 +441,34 @@
 				var parseFile = new Parse.File(name, file);
 				parseFile.save({
 					success: function(){
-						App.posts.get(post.id).set({
-							'status': 'done',
-							'image': parseFile,
-						}).save(null, {
-							success: function(){
-								App.router.navigate('#/done', { trigger: true });
-							},
-							error: function(){
-								console.log('Failed to save with image');
-							}
-						});
+						self.uploadedImage = parseFile;
+						$('#newImage').attr('src', parseFile._url);
 					},
 					error: function(){
-						console.log('Image upload failed');
+						alert('Failed to add image');
+					}
+				});
+			}
+		},
+
+		complete: function(e){
+			e.preventDefault();
+			var post = this.options;
+			var self = this;
+
+			// Image Upload to Parse
+			var upload = $('#cameraUpload')[0];
+			if(self.uploadedImage !== ""){
+				App.posts.get(post.id).set({
+					'status': 'done',
+					'image': self.uploadedImage,
+				}).save(null, {
+					success: function(){
+						console.log('Post Saved!');
+						App.router.navigate('#/done', { trigger: true });
+					},
+					error: function(){
+						console.log('Failed to save with image');
 					}
 				});
 			} else {
@@ -490,7 +482,7 @@
 						console.log('Failed to complete');
 					}
 				});
-			};
+			}
 		}
 
 	});
@@ -515,6 +507,13 @@ Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhT
 		error: function(){
 			console.log('Posts could not be fetched');
 		}
+	});
+
+
+	// Hanldebars helpers
+
+	Handlebars.registerHelper('timestamp', function(time){
+		return moment(time).format('MMMM Do, YYYY');
 	});
 
 }());
