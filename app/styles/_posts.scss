@@ -1,16 +1,68 @@
 .postList {
+	display: flex;
+	flex-flow: row wrap;
 
-	li {
-		padding: 40px 0 40px 0;
-		border-bottom: 3px solid $lgrey;
-		width: 100%;
-		overflow: auto;
+	@media(min-width: 800px){
+		justify-content: space-between;
 	}
 
+	li {
+		display: flex;
+		flex-flow: column nowrap;
+		flex: 1 auto;
+		position: relative;
+		border: 3px solid $lgrey;
+		width: 100%;
+		margin-bottom: 2em;
+		padding: 2em;
+
+		@media(min-width: 800px){
+			width: auto;
+			max-width: 32%;
+		}
+
+		&:hover .delete {
+			opacity: 1;
+			-webkit-transition: opacity .125s;
+		  transition: opacity .125s;
+		}
+	}
+
+	.content {
+		flex: 1 auto;
+	}
+
+	.actions {
+		flex: 0 auto;
+		display: flex;
+		flex-flow: row nowrap;
+
+		a {
+			flex: 1 auto;
+			display: flex;
+			justify-content: center;
+			flex-flow: column nowrap;
+		}
+
+		button {
+			flex: 4 auto;
+		}
+	}
+
+	// TODO: Rename
 	.textContent {
 		width: 60%;
 		float: left;
 		padding-right: 40px;
+	}
+
+	.delete {
+		position: absolute;
+		top: -8px;
+		right: -8px;
+		opacity: 0;
+		-webkit-transition: opacity .125s;
+		transition: opacity .125s;
 	}
 
 	.imageContent {
