@@ -29,19 +29,21 @@
 
     <div class="wrapper">
       <nav>
-        <div class="container">
-          <a href="#/">Home</a>
-          <a href="#/done">History</a>
-          <a href="#/login">Login</a>
-          <span class="catSpan">Category:</span>
-          <select id="category">
-            <option value="all">All</option>
-            <option value="movies">Movies</option>
-            <option value="restaurants">Restaurants</option>
-            <option value="drinks">Drinks</option>
-            <option value="hikes">Hikes</option>
-            <option value="other">Other</option>
-          </select>
+        <div class="nav-container">
+          <div class="nav-items">
+            <a href="#/">Home</a>
+            <a href="#/done">History</a>
+            <a href="#/login">Login</a>
+            <span class="catSpan">Category:</span>
+            <select id="category">
+              <option value="all">All</option>
+              <option value="movies">Movies</option>
+              <option value="restaurants">Restaurants</option>
+              <option value="drinks">Drinks</option>
+              <option value="hikes">Hikes</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
           <a class="addButton" href="#/addPost">
             <button>+</button>
           </a>
@@ -60,7 +62,6 @@
         <li id="{{ objectId }}">
           <section class="content">
             <h3>{{ title }}</h3>
-            <button id="delete" class="delete">X</button>
             <p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
             <p class="description">{{ description }}</p>
           </section>
@@ -68,6 +69,7 @@
             <a href="#/editPost/{{ objectId }}">Edit</a>
             <button id="complete">Mark Complete</button>
           </section>
+          <button id="delete" class="delete">X</button>
         </li>
       {{else}}
         <h3>No posts available</h3>
