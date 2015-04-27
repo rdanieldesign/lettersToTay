@@ -91,25 +91,58 @@ p {
 
 // Custom Styles
 .wrapper {
-  margin: 0 auto;
   width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#content {
+  overflow: scroll;
 }
 
 .container {
-  margin: 0 auto;
+  flex: 1 auto;
+  width: 100%;
   padding: 40px;
   max-width: 1000px;
   background-color: $white;
 }
 
 nav {
+  width: 100%;
+  flex: 0 100px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+  border-bottom: 6px solid $lgrey;
+  z-index: 99;
 
-  .container {
-    border-bottom: 6px solid $lgrey;
+  .nav-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 40px;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    justify-content: space-between;
   }
 
-  a {
-    margin-right: 16px;
+  .nav-items {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 auto;
+    align-items: center;
+    max-width: 66%;
+
+    a {
+      flex: 1 auto;
+      justify-content: center;
+    }
 
     button {
       font-size: 1em;
@@ -117,16 +150,16 @@ nav {
       padding: 8px 12px;
       vertical-align: middle;
     }
-  }
 
-  .catSpan {
-    font-family: $montserrat;
-    font-size: 1.4em;
-    font-weight: 400;
-    margin: 0 6px 0 20px;
-  }
+    .catSpan {
+      font-family: $montserrat;
+      font-size: 1.4em;
+      font-weight: 400;
+      margin: 0 6px 0 0;
+    }
 
-  a.addButton {
-    float: right;
+    a.addButton {
+      flex: 0 auto;
+    }
   }
 }
