@@ -155,7 +155,7 @@
 		},
 
 		complete: function(e){
-			var postId = $(e.target.parentElement).attr('id');
+			var postId = $(e.target.parentElement.parentElement).attr('id');
 			App.router.navigate('#/complete/' + postId, { trigger: true });
 		},
 
