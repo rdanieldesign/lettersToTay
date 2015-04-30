@@ -115,12 +115,16 @@
 			'click #complete': 'complete'
 		},
 
-		template: Handlebars.compile($('#homePosts').html()),
+		template: '',
 
 		initialize: function(){
 			var self = this;
+
 			if(App.user){
-				this.render();
+				$.get('../../templates/homePosts.html', function(data){
+					self.template = Handlebars.compile($(data).html());
+					self.render();
+				});
 			} else {
 				App.router.navigate('#/login', { trigger: true });
 				alert('Please Log In');
@@ -190,16 +194,21 @@
 			'click #logout': 'logout'
 		},
 
-		template: Handlebars.compile($('#login').html()),
+		template: '',
 
 		initialize: function(){
 			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/login.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
 			$('#content').empty();
-			this.$el.html(this.template());
+			this.$el.html(this.template);
+			$('#content').html(this.$el);
 		},
 
 		login: function(e){
@@ -232,11 +241,15 @@
 
 	App.Views.SingleView = Parse.View.extend({
 
-		template: Handlebars.compile($('#singlePost').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
+			var self = this;
+			$.get('../../templates/single.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
@@ -259,18 +272,20 @@
 			'click #createPost': 'createPost'
 		},
 
-		template: Handlebars.compile($('#addPost').html()),
+		template: '',
 
 		initialize: function(){
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/addPost.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
-
 			$('#content').empty();
-
-			this.$el.html(this.template());
+			this.$el.html(this.template);
+			$('#content').html(this.$el);
 		},
 
 		createPost: function(e){
@@ -307,20 +322,23 @@
 			'click #submitEdit': 'edit'
 		},
 
-		template: Handlebars.compile($('#editPost').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/editPost.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
 
 			$('#content').empty();
-
 			var post = this.template(this.options.toJSON());
 			this.$el.html(post);
+			$('#content').html(this.$el);
 		},
 
 		edit: function(e){
@@ -360,13 +378,16 @@
 			'click #changeImage': 'changeImage'
 		},
 
-		template: Handlebars.compile($('#donePosts').html()),
+		template: '',
 
 		initialize: function(){
+			var self = this;
 
-			this.render();
-
-			$('#content').html(this.$el);
+			$.get('../../templates/donePosts.html', function(data){
+				var innerData = $(data).html();
+				self.template = Handlebars.compile(innerData);
+				self.render();
+			});
 
 			App.posts.on('change', this.render, this);
 			App.posts.on('destroy', this.render, this);
@@ -381,6 +402,7 @@
 			this.$el.empty();
 			var post = this.template(donePosts);
 			this.$el.html(post);
+			$('#content').html(this.$el);
 		},
 
 		delete: function(e){
@@ -414,19 +436,23 @@
 			'change #cameraUpload': 'addImage'
 		},
 
-		template: Handlebars.compile($('#complete').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/complete.html', function(data){
+				var temp = $(data).html();
+				self.template = Handlebars.compile(temp);
+				self.render();
+			});
 		},
 
 		render: function(){
 			this.$el.empty();
 			$('#content').empty();
 			var form = this.template(this.options.toJSON());
-			this.$el.html(form);
+			$('#content').html(form);
 		},
 
 		uploadedImage: "",
