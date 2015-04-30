@@ -9,18 +9,20 @@
 			'click #createPost': 'createPost'
 		},
 
-		template: Handlebars.compile($('#addPost').html()),
+		template: '',
 
 		initialize: function(){
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/addPost.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
-
 			$('#content').empty();
-
-			this.$el.html(this.template());
+			this.$el.html(this.template);
+			$('#content').html(this.$el);
 		},
 
 		createPost: function(e){

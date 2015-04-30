@@ -10,16 +10,21 @@
 			'click #logout': 'logout'
 		},
 
-		template: Handlebars.compile($('#login').html()),
+		template: '',
 
 		initialize: function(){
 			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/login.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
 			$('#content').empty();
-			this.$el.html(this.template());
+			this.$el.html(this.template);
+			$('#content').html(this.$el);
 		},
 
 		login: function(e){

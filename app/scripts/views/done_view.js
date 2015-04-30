@@ -11,13 +11,16 @@
 			'click #changeImage': 'changeImage'
 		},
 
-		template: Handlebars.compile($('#donePosts').html()),
+		template: '',
 
 		initialize: function(){
+			var self = this;
 
-			this.render();
-
-			$('#content').html(this.$el);
+			$.get('../../templates/donePosts.html', function(data){
+				var innerData = $(data).html();
+				self.template = Handlebars.compile(innerData);
+				self.render();
+			});
 
 			App.posts.on('change', this.render, this);
 			App.posts.on('destroy', this.render, this);
@@ -32,6 +35,7 @@
 			this.$el.empty();
 			var post = this.template(donePosts);
 			this.$el.html(post);
+			$('#content').html(this.$el);
 		},
 
 		delete: function(e){

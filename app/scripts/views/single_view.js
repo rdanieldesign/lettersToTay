@@ -2,11 +2,15 @@
 
 	App.Views.SingleView = Parse.View.extend({
 
-		template: Handlebars.compile($('#singlePost').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
+			var self = this;
+			$.get('../../templates/single.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){

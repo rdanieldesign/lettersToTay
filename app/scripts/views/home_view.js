@@ -10,12 +10,16 @@
 			'click #complete': 'complete'
 		},
 
-		template: Handlebars.compile($('#homePosts').html()),
+		template: '',
 
 		initialize: function(){
 			var self = this;
+
 			if(App.user){
-				this.render();
+				$.get('../../templates/homePosts.html', function(data){
+					self.template = Handlebars.compile($(data).html());
+					self.render();
+				});
 			} else {
 				App.router.navigate('#/login', { trigger: true });
 				alert('Please Log In');

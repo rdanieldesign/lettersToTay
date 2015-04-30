@@ -6,20 +6,23 @@
 			'click #submitEdit': 'edit'
 		},
 
-		template: Handlebars.compile($('#editPost').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/editPost.html', function(data){
+				self.template = Handlebars.compile($(data).html());
+				self.render();
+			});
 		},
 
 		render: function(){
 
 			$('#content').empty();
-
 			var post = this.template(this.options.toJSON());
 			this.$el.html(post);
+			$('#content').html(this.$el);
 		},
 
 		edit: function(e){

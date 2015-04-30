@@ -7,19 +7,23 @@
 			'change #cameraUpload': 'addImage'
 		},
 
-		template: Handlebars.compile($('#complete').html()),
+		template: '',
 
 		initialize: function(options){
 			this.options = options;
-			this.render();
-			$('#content').html(this.$el);
+			var self = this;
+			$.get('../../templates/complete.html', function(data){
+				var temp = $(data).html();
+				self.template = Handlebars.compile(temp);
+				self.render();
+			});
 		},
 
 		render: function(){
 			this.$el.empty();
 			$('#content').empty();
 			var form = this.template(this.options.toJSON());
-			this.$el.html(form);
+			$('#content').html(form);
 		},
 
 		uploadedImage: "",
