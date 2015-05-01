@@ -1,0 +1,19 @@
+<script type="text/template" id="homePosts">
+	{{#each this}}
+		<li id="{{ objectId }}">
+			<section class="content">
+				<h3>{{ title }}</h3>
+				<p class="author">added by {{ author }} on {{timestamp updatedAt}}</p>
+				<p class="description">{{ description }}</p>
+			</section>
+			<section class="actions">
+				<a href="#/editPost/{{ objectId }}">Edit</a>
+				<button id="complete">Mark Complete</button>
+			</section>
+			<button id="delete" class="delete">X</button>
+		</li>
+	{{else}}
+		<h3>No posts available</h3>
+		<p>Add your own now!</p>
+	{{/each}}
+</script>
