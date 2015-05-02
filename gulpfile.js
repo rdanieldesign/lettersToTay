@@ -46,7 +46,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('app/templates/*',  {dot: true})
+  return gulp.src('app/templates/*')
     .pipe(gulp.dest('dist/templates'));
 });
 
@@ -126,7 +126,7 @@ gulp.task('default', ['clean'], function () {
 // Push a subtree from our `dist` folder
 gulp.task('deploy', function() {
 
-  gulp.src('/')
+  gulp.src("./dist/**/*")
     .pipe(prompt.prompt({
         type: 'confirm',
         name: 'task',
