@@ -16,7 +16,7 @@
 			var self = this;
 
 			if(App.user){
-				$.get('../../templates/homePosts.html', function(data){
+				$.get('/templates/homePosts.html', function(data){
 					self.template = Handlebars.compile($(data).html());
 					self.render();
 				});

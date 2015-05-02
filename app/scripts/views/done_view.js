@@ -16,7 +16,7 @@
 		initialize: function(){
 			var self = this;
 
-			$.get('../../templates/donePosts.html', function(data){
+			$.get('/templates/donePosts.html', function(data){
 				var innerData = $(data).html();
 				self.template = Handlebars.compile(innerData);
 				self.render();
