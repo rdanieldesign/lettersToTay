@@ -1,5 +1,3 @@
-// TODO add build process for templates folder
-
 'use strict';
 // generated on 2015-01-31 using generator-tiy-webapp 0.0.10
 
@@ -46,7 +44,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('app/templates/*')
+  return gulp.src('app/templates/**/*')
     .pipe(gulp.dest('dist/templates'));
 });
 
@@ -126,7 +124,7 @@ gulp.task('default', ['clean'], function () {
 // Push a subtree from our `dist` folder
 gulp.task('deploy', function() {
 
-  gulp.src("./dist/**/*")
+  gulp.src('/')
     .pipe(prompt.prompt({
         type: 'confirm',
         name: 'task',
