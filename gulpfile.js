@@ -46,7 +46,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('app/templates/*')
+  return gulp.src('app/templates/*',  {dot: true})
     .pipe(gulp.dest('dist/templates'));
 });
 
