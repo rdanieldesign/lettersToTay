@@ -7,8 +7,7 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/single.html', function(data){
+			$.get(App.base + 'templates/single.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});

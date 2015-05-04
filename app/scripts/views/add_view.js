@@ -13,8 +13,7 @@
 
 		initialize: function(){
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/addPost.html', function(data){
+			$.get(App.base + 'templates/addPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});

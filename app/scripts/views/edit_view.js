@@ -12,7 +12,7 @@
 			this.options = options;
 			var self = this;
 			var url = window.location.href;
-			$.get(url + 'templates/editPost.html', function(data){
+			$.get(App.base + 'templates/editPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});

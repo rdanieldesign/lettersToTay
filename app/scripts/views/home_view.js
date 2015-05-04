@@ -16,8 +16,7 @@
 			var self = this;
 
 			if(App.user){
-				var url = window.location.href;
-				$.get(url + 'templates/homePosts.html', function(data){
+				$.get(App.base + '/templates/homePosts.html', function(data){
 					self.template = Handlebars.compile($(data).html());
 					self.render();
 				});

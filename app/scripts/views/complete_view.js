@@ -12,8 +12,7 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/complete.html', function(data){
+			$.get(App.base + 'templates/complete.html', function(data){
 				var temp = $(data).html();
 				self.template = Handlebars.compile(temp);
 				self.render();
