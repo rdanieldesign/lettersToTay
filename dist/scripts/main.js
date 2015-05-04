@@ -121,8 +121,7 @@
 			var self = this;
 
 			if(App.user){
-				var url = window.location.href;
-				$.get(url + 'templates/homePosts.html', function(data){
+				$.get(App.base + '/templates/homePosts.html', function(data){
 					self.template = Handlebars.compile($(data).html());
 					self.render();
 				});
@@ -200,8 +199,7 @@
 		initialize: function(){
 			this.render();
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/login.html', function(data){
+			$.get(App.base + 'templates/login.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -248,8 +246,7 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/single.html', function(data){
+			$.get(App.base + 'templates/single.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -279,8 +276,7 @@
 
 		initialize: function(){
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/addPost.html', function(data){
+			$.get(App.base + 'templates/addPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -332,7 +328,7 @@
 			this.options = options;
 			var self = this;
 			var url = window.location.href;
-			$.get(url + 'templates/editPost.html', function(data){
+			$.get(App.base + 'templates/editPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -387,8 +383,7 @@
 
 		initialize: function(){
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/donePosts.html', function(data){
+			$.get(App.base + 'templates/donePosts.html', function(data){
 				var innerData = $(data).html();
 				self.template = Handlebars.compile(innerData);
 				self.render();
@@ -446,8 +441,7 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			var url = window.location.href;
-			$.get(url + 'templates/complete.html', function(data){
+			$.get(App.base + 'templates/complete.html', function(data){
 				var temp = $(data).html();
 				self.template = Handlebars.compile(temp);
 				self.render();
@@ -523,6 +517,9 @@
 Parse.initialize("lToYBQZdcL2qM76Z6EI6sLxjKRJIudczI1HqKdlA", "KHbrxno4ItzQwSTMhTxWVr26Nne6n8KMA6WLsUeu");
 
 (function(){
+
+	// Get Base URL
+	App.base = window.location.origin + window.location.pathname;
 
 	// Initialize User
 	App.user = Parse.User.current();
