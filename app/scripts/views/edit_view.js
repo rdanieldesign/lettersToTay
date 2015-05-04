@@ -11,7 +11,8 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			$.get('/templates/editPost.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/editPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});

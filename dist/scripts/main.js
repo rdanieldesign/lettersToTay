@@ -200,7 +200,8 @@
 		initialize: function(){
 			this.render();
 			var self = this;
-			$.get('/templates/login.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/login.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -247,7 +248,8 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			$.get('/templates/single.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/single.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -277,7 +279,8 @@
 
 		initialize: function(){
 			var self = this;
-			$.get('/templates/addPost.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/addPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -328,7 +331,8 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			$.get('/templates/editPost.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/editPost.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
@@ -383,8 +387,8 @@
 
 		initialize: function(){
 			var self = this;
-
-			$.get('/templates/donePosts.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/donePosts.html', function(data){
 				var innerData = $(data).html();
 				self.template = Handlebars.compile(innerData);
 				self.render();
@@ -442,7 +446,8 @@
 		initialize: function(options){
 			this.options = options;
 			var self = this;
-			$.get('/templates/complete.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/complete.html', function(data){
 				var temp = $(data).html();
 				self.template = Handlebars.compile(temp);
 				self.render();

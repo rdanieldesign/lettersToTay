@@ -15,7 +15,8 @@
 		initialize: function(){
 			this.render();
 			var self = this;
-			$.get('/templates/login.html', function(data){
+			var url = window.location.href;
+			$.get(url + 'templates/login.html', function(data){
 				self.template = Handlebars.compile($(data).html());
 				self.render();
 			});
